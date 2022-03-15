@@ -1,11 +1,7 @@
 <h1>{{title}}</h1>
-<tr *ngFor="let province of provinceData">
-  <p>{{province.CCAA}}</p>
-  <p>{{province.native}}</p>
-  <p>{{province.name}}</p>
-  <p>{{province.cod_CCAA}}</p>
-  <p>{{province.cod}}</p>
-  <p>{{province.geo_x}}</p>
-  <p>{{province.geo_y}}</p>
-  <p>{{province.geo_shape.toString()}}</p>
-</tr>
+<app-community-picker [communities]="communitiesList" (selectedCommunityEvent)="filterProvinces($event)">
+</app-community-picker>
+<app-province-picker [provinces]="provincesList" (selectedProvinceEvent)="selectedProvince = $event"></app-province-picker>
+
+<p>{{selectedCommunity}}</p>
+<p>{{selectedProvince}}</p>

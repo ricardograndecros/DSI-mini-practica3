@@ -1,1 +1,5 @@
-<p>province-picker works!</p>
+<select [(ngModel)]="selectedProvince" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let province of provinces" [ngValue]="province" (click)="newSelectedCommunity()">
+        {{province}}
+    </option>
+</select>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
+import { Province } from '../province';
 
 @Component({
   selector: 'app-province-picker',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProvincePickerComponent implements OnInit {
 
+  @Input() provinces: string[] = [];
+  selectedProvince: string = "";
+  @Output() selectedProvinceEvent = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  newSelectedCommunity(){
+    this.selectedProvinceEvent.emit(this.selectedProvince);
+  }
+
 
 }
