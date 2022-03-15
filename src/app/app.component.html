@@ -1,7 +1,12 @@
 <h1>{{title}}</h1>
 <app-community-picker [communities]="communitiesList" (selectedCommunityEvent)="filterProvinces($event)">
 </app-community-picker>
-<app-province-picker [provinces]="provincesList" (selectedProvinceEvent)="selectedProvince = $event"></app-province-picker>
+<app-province-picker [provinces]="provincesList" (selectedProvinceEvent)="selectProvince($event)"></app-province-picker>
 
-<p>{{selectedCommunity}}</p>
-<p>{{selectedProvince}}</p>
+<div id="information" *ngIf="showInfo">
+    <p>Comunidad: &nbsp; {{selectedCommunity}} &nbsp; {{selectedProvinceObject.cod_CCAA}}</p>
+    <p>Provincia: &nbsp; {{selectedProvince}} ({{selectedProvinceObject.name}})&nbsp; {{selectedProvinceObject.cod}}</p>
+</div>
+
+
+<button (click)="showInfo=true">Get propiedades del Custom Element</button>

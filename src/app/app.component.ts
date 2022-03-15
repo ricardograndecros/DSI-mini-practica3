@@ -17,6 +17,9 @@ export class AppComponent {
   provincesList: string[] = []; 
   selectedCommunity: string = "";
   selectedProvince: string = "";
+  selectedProvinceObject: Province = new Province("", "", "", -1, -1, -1, -1, [0]);
+
+  showInfo: boolean = false;
 
   constructor(private provinceService: ProvincesService, 
     private http: HttpClient){}
@@ -24,6 +27,17 @@ export class AppComponent {
   ngOnInit(){
     // execute API call on init to fetch data
     this.getData()
+  }
+
+  selectProvince(province: string){
+    this.selectedProvince = province;
+
+    this.provinceData.forEach((iter) => {
+      if (iter.native == province){
+        this.selectedProvinceObject = iter;
+      }
+    })
+    console.log(this.selectedProvinceObject.geo_shape)
   }
 
   filterProvinces(community: string){
@@ -57,9 +71,10 @@ export class AppComponent {
     })
     this.rawData.records.forEach((record: any) => {
       var province = new Province(record.fields.ccaa, record.fields.provincia, 
-        record.fields.texto, record.fields.cod_CCAA, record.fields.codigo, 
+        record.fields.texto, record.fields.cod_ccaa, record.fields.codigo, 
         record.fields.geo_point_2d[0], record.fields.geo_point_2d[1],
         record.fields.geo_shape);
+      console.log(province);
       this.provinceData.push(province);
     });
     console.log(this.provinceData)
