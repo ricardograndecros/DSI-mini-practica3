@@ -1,0 +1,9 @@
+$selectors-background-color: #add8e6;
+
+#selectors {
+    display: flex;
+    flex-flow: row;
+    height: 50px;
+    width: auto;
+    background-color: $selectors-background-color;
+}

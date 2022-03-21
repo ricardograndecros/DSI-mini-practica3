@@ -1,6 +1,8 @@
-<select [(ngModel)]="selectedCommunity" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let community of communities" [ngValue]="community" (click)="newSelectedCommunity()">
-        {{community}}
-    </option>
-
-</select>
+<div class="wrapper">
+    <p>Comunidad Autónoma:</p>
+    <select [(ngModel)]="selectedCommunity" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let community of communities" [ngValue]="community" (click)="newSelectedCommunity()">
+            {{community}}
+        </option>
+    </select>
+</div>

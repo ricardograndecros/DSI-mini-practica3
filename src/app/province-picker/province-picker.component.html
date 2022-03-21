@@ -1,5 +1,8 @@
-<select [(ngModel)]="selectedProvince" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let province of provinces" [ngValue]="province" (click)="newSelectedCommunity()">
-        {{province}}
-    </option>
-</select>
+<div class="wrapper">
+    <p>Provincia:</p>
+    <select [(ngModel)]="selectedProvince" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let province of provinces" [ngValue]="province" (click)="newSelectedCommunity()">
+            {{province}}
+        </option>
+    </select>
+</div>
