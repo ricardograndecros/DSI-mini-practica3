@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { APP_INITIALIZER, Component } from '@angular/core';
+import { APP_INITIALIZER, Component, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { CommunityPickerComponent } from './community-picker/community-picker.component';
 import { Province } from './province';
+import { ProvincePickerComponent } from './province-picker/province-picker.component';
 import { ProvincesService } from './provinces.service';
 
 @Component({
@@ -21,8 +24,14 @@ export class AppComponent {
 
   showInfo: boolean = false;
 
-  constructor(private provinceService: ProvincesService, 
-    private http: HttpClient){}
+  constructor(injector: Injector, private provinceService: ProvincesService, 
+    private http: HttpClient){
+      const communityPicker = createCustomElement(CommunityPickerComponent, {injector});
+      customElements.define('community-picker', communityPicker);
+
+      const provincePicker = createCustomElement(ProvincePickerComponent, {injector});
+      customElements.define('province-picker', provincePicker);
+    }
 
   ngOnInit(){
     // execute API call on init to fetch data
@@ -37,7 +46,8 @@ export class AppComponent {
         this.selectedProvinceObject = iter;
       }
     })
-    console.log(this.selectedProvinceObject.geo_shape)
+    // hide text
+    this.showInfo = false;
   }
 
   filterProvinces(community: string){
@@ -54,6 +64,8 @@ export class AppComponent {
         }
       })
     }
+    // hide text
+    this.showInfo = false;
   }
 
   getData(){
