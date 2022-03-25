@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 import { APP_INITIALIZER, Component, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { CommunityPickerComponent } from './community-picker/community-picker.component';
@@ -20,7 +21,7 @@ export class AppComponent {
   provincesList: string[] = []; 
   selectedCommunity: string = "";
   selectedProvince: string = "";
-  selectedProvinceObject: Province = new Province("", "", "", -1, -1, -1, -1, [0]);
+  selectedProvinceObject: Province = new Province("", "", "", -1, -1, "", "", -1, -1, [0]);
 
   showInfo: boolean = false;
 
@@ -82,8 +83,9 @@ export class AppComponent {
       this.communitiesList.push(community.name);
     })
     this.rawData.records.forEach((record: any) => {
+      let [postCode, minCode] = this.getExtraCodes(record.fields.provincia);
       var province = new Province(record.fields.ccaa, record.fields.provincia, 
-        record.fields.texto, record.fields.cod_ccaa, record.fields.codigo, 
+        record.fields.texto, record.fields.cod_ccaa, record.fields.codigo, postCode, minCode,
         record.fields.geo_point_2d[0], record.fields.geo_point_2d[1],
         record.fields.geo_shape);
       console.log(province);
@@ -92,21 +94,19 @@ export class AppComponent {
     console.log(this.provinceData)
   }
 
-  getCodesCMI(){
+  getExtraCodes(province: string){
+    let postCode: string = "";
+    let minCode: string = "";
 
-    provincespc.filter(province =>
-      province.province.toLocaleLowerCase().includes(this.selectedProvince.toLocaleLowerCase())
-    )
+    provincespc.forEach((provinceCodes) =>{
+      if (province == provinceCodes.province){
+        postCode = provinceCodes.pc;
+        minCode = provinceCodes.cmi;
+      }
+    })
 
-    return provincespc[0].cmi
+    return [postCode, minCode] as const;
   }
-  getCodesCP(){
 
-    provincespc.filter(province =>
-      province.province.toLocaleLowerCase().includes(this.selectedProvince.toLocaleLowerCase())
-    )
-
-    return provincespc[0].pc
-  }
 
 }

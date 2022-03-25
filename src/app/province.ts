@@ -1,4 +1,5 @@
 import { HttpClient } from "@angular/common/http";
+import { min } from "rxjs";
 
 export class Province {
     public CCAA: string;
@@ -6,17 +7,21 @@ export class Province {
     public name: string;
     public cod_CCAA: number;
     public cod: number;
+    public post_code: string;
+    public min_code: string;
     public geo_x: number;
     public geo_y: number;
     public geo_shape: number[];
 
     constructor (CCAA: string, native: string, name: string, cod_CCAA: number,
-        cod: number, geo_x: number, geo_y: number, geo_shape: number[]){
+        cod: number, post_code: string, min_code:string, geo_x: number, geo_y: number, geo_shape: number[]){
             this.CCAA = CCAA;
             this.native = native;
             this.name = name;
             this.cod_CCAA = cod_CCAA;
             this.cod = cod;
+            this.post_code = post_code;
+            this.min_code = min_code;
             this.geo_x = geo_x;
             this.geo_y = geo_y;
             this.geo_shape = geo_shape;
