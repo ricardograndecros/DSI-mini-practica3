@@ -21,6 +21,7 @@ export class CommunityPickerComponent implements OnInit {
   }
 
   newSelectedCommunity(){
+  
     this.selectedCommunityEvent.emit(this.selectedCommunity);
   }
 

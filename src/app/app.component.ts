@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, Component, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { CommunityPickerComponent } from './community-picker/community-picker.component';
-import { Province } from './province';
+import { Province, provincespc } from './province';
 import { ProvincePickerComponent } from './province-picker/province-picker.component';
 import { ProvincesService } from './provinces.service';
 
@@ -90,6 +90,23 @@ export class AppComponent {
       this.provinceData.push(province);
     });
     console.log(this.provinceData)
+  }
+
+  getCodesCMI(){
+
+    provincespc.filter(province =>
+      province.province.toLocaleLowerCase().includes(this.selectedProvince.toLocaleLowerCase())
+    )
+
+    return provincespc[0].cmi
+  }
+  getCodesCP(){
+
+    provincespc.filter(province =>
+      province.province.toLocaleLowerCase().includes(this.selectedProvince.toLocaleLowerCase())
+    )
+
+    return provincespc[0].pc
   }
 
 }

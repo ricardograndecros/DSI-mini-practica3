@@ -9,6 +9,8 @@
 <div id="information" *ngIf="showInfo">
     <p>Comunidad: &nbsp; {{selectedCommunity}} &nbsp; {{selectedProvinceObject.cod_CCAA}}</p>
     <p>Provincia: &nbsp; {{selectedProvince}} ({{selectedProvinceObject.name}})&nbsp; {{selectedProvinceObject.cod}}</p>
+    <p>Código de Provincia (Ministerio de Interior): &nbsp;  {{getCodesCMI()}} &nbsp;</p>
+    <p>Código Postal &nbsp; {{getCodesCP()}}  &nbsp;</p>
 </div>
 
 
