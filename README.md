@@ -1,7 +1,6 @@
 # DSIMiniPractica3
 
-This is just a small project for learning Angular. The project loads geographic information of Spain into two selectors. When a province is selected,  
-more information is shown. 
+This is just a small project for learning Angular. The project loads geographic information of Spain into two selectors. When a province is selected, more information is shown. 
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
